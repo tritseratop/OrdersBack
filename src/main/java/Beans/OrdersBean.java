@@ -21,12 +21,12 @@ public class OrdersBean {
 
     }
 
-    public Orders find(Class type, int id) {
-        return (Orders)crudService.find(type, id);
+    public Orders find(int id) {
+        return (Orders)crudService.find(Orders.class, id);
     }
 
-    public void remove(Class type, int id) {
-        crudService.remove(type, id);
+    public void remove(int id) {
+        crudService.remove(Orders.class, id);
     }
 
     public Orders change(Orders orders) {
@@ -40,7 +40,7 @@ public class OrdersBean {
     public Orders acceptOrder(Orders order) {
         int orderNumber = order.getOrderNumber();
         int productId = order.getOrderProduct().getId();
-        Product product = productBean.find(Product.class, productId);
+        Product product = productBean.find(productId);
         product.setProductNumber(product.getProductNumber()-orderNumber);
         productBean.change(product);
         crudService.save(order);
@@ -51,7 +51,7 @@ public class OrdersBean {
         Orders order = (Orders)crudService.find(Orders.class, id);
         int orderNumber = order.getOrderNumber();
         int productId = order.getOrderProduct().getId();
-        Product product = productBean.find(Product.class, productId);
+        Product product = productBean.find(productId);
         product.setProductNumber(product.getProductNumber()+orderNumber);
         productBean.change(product);
         crudService.remove(Orders.class, id);

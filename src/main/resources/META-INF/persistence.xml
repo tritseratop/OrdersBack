@@ -5,7 +5,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
     <persistence-unit name="orders-unit" transaction-type="JTA">
-        <!--    <persistence-unit name="example-unit" transaction-type="RESOURCE_LOCAL">-->
+        <!--    <persistence-unit name="Example-unit" transaction-type="RESOURCE_LOCAL">-->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/OracleDS</jta-data-source>
         <!--        <exclude-unlisted-classes>false</exclude-unlisted-classes>-->

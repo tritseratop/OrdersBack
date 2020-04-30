@@ -1,9 +1,10 @@
 package Entities;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
+@Table(name = "Category")
+@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
 public class Category {
     @Id
     //@GeneratedValue

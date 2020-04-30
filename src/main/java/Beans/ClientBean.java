@@ -12,23 +12,17 @@ import javax.inject.Inject;
 public class ClientBean {
     @Inject
     private CrudInterface crudService;
-    @EJB
-    private ProducerBean producerBean;
 
     public void save(Client client) {
         crudService.save(client);
-        Producer producer = new Producer();
-        producer.setId(4);
-        producer.setProducerName("Xiaomi");
-        producerBean.save(producer);
     }
 
-    public Client find(Class type, int id) {
-        return (Client)crudService.find(type, id);
+    public Client find(int id) {
+        return (Client)crudService.find(Client.class, id);
     }
 
-    public void remove(Class type, int id) {
-        crudService.remove(type, id);
+    public void remove(int id) {
+        crudService.remove(Client.class, id);
     }
 
     public Client change(Client client) {

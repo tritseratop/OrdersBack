@@ -1,7 +1,6 @@
 package Beans;
 
 import CrudServices.CrudInterface;
-import Entities.Client;
 import Entities.Producer;
 
 import javax.ejb.Stateless;

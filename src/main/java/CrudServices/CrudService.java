@@ -1,11 +1,10 @@
 package CrudServices;
 
-import Entities.Category;
-
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Named
 @Dependent
@@ -28,5 +27,8 @@ public class CrudService<T> implements CrudInterface<T> {
     public void remove(Class type, int id) {
         T t = (T)entityManager.find(type, id);
         entityManager.remove(t);
+    }
+    public List getAll(String queryName, Class type) {
+        return entityManager.createNamedQuery(queryName, type).getResultList();
     }
 }

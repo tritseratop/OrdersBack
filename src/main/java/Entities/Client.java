@@ -1,13 +1,12 @@
 package Entities;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Client {
 
     @Id
-    //@GeneratedValue
+    @GeneratedValue
     private int id;
 
     @Column(name = "CLIENT_NAME")

@@ -3,6 +3,8 @@ package Entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Product")
+@NamedQuery(name = "Products.findAll", query = "SELECT c FROM Product c")
 public class Product {
     @Id
     @GeneratedValue
