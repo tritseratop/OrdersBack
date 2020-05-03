@@ -15,6 +15,8 @@ public class OrdersBean {
 
     @EJB
     private ProductBean productBean;
+    @EJB
+    private ClientBean clientBean;
 
     public void save(Orders orders) {
         crudService.save(orders);
@@ -38,6 +40,7 @@ public class OrdersBean {
     }
 
     public Orders acceptOrder(Orders order) {
+        //clientBean.save(order.getOrderClient());
         int orderNumber = order.getOrderNumber();
         int productId = order.getOrderProduct().getId();
         Product product = productBean.find(productId);

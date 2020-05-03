@@ -9,9 +9,7 @@ public class Orders {
     @GeneratedValue
     private int id;
 
-    //@ManyToMany
-
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     @JoinColumn(name = "ORDER_CLIENT", referencedColumnName = "ID")
     private Client orderClient;
 

@@ -1,6 +1,7 @@
 package Entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Client {
@@ -21,7 +22,7 @@ public class Client {
     @Column(name = "CLIENT_EMAIL")
     private String clientEmail;
 
-    /*@OneToMany(mappedBy = "orderClient", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
+    /*@OneToMany(mappedBy = "orderClient", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @Column(name = "ORDERS_ID")
     private Set<Orders> orders;*/
 

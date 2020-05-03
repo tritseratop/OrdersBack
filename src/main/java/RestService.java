@@ -51,53 +51,36 @@ public class RestService {
         return (List<Category>)categoryBean.getAll();
     }
 
-    @PUT
+    @POST
     @Path("/order")
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON) // "application/json"
     public Orders addOrder(Orders order) {
         return ordersBean.acceptOrder(order);
     }
 
-    @PUT
+    @POST
+    @Path("/findByCategory")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON) // "application/json"
+    public List<Product> findByCategory(Category category) {
+        return (List<Product>)productBean.findByCategory(category);
+    }
+
+    @POST
     @Path("/client")
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addClient(Client client) {
+    public Client addClient(Client client) {
         clientBean.save(client);
+        return clientBean.find(client.getId());
     }
 
     @DELETE
     @Path("/delete/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String deleteOrder(@PathParam("id") String id) {
+    public void deleteOrder(@PathParam("id") String id) {
         ordersBean.delete(Integer.parseInt(id));
-        return "Your order has been removed";
     }
-
-    /*@GET
-    @Path("/put")
-    @Consumes(MediaType.APPLICATION_JSON) // "application/json"
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response addOrderTrial() {
-        Orders order = new Orders();
-        Client client = new Client();
-        Product product = new Product();
-        product = productBean.find(2);
-        client = clientBean.find(1);
-        order.setOrderStatus(0);
-        order.setOrderPrice(2000);
-        order.setOrderNumber(1);
-        order.setOrderClient(client);
-        order.setOrderProduct(product);
-        ordersBean.acceptOrder(order);
-        return Response.ok(order)
-                .build();
-    }*/
-
-    /*@PUT
-    @Path
-    @Consumes(MediaType.APPLICATION_JSON) // "application/json"
-    public String changeOrder(Orders order) {
-        return productBean.find(productBean.getProductClass(), Integer.parseInt(id)).toString();
-    }*/
 
 }

@@ -1,14 +1,20 @@
 package Beans;
 
 import CrudServices.CrudInterface;
+import Entities.Category;
 import Entities.Product;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
 public class ProductBean {
+    @PersistenceContext(unitName = "orders-unit")
+    EntityManager entityManager;
+
     @Inject
     private CrudInterface crudService;
 
@@ -34,5 +40,9 @@ public class ProductBean {
 
     public List getAll() {
         return crudService.getAll("Products.findAll", Product.class);
+    }
+
+    public List findByCategory(Category category) {
+        return entityManager.createNamedQuery("Products.findByCategory", Product.class).setParameter("productCategory", category).getResultList();
     }
 }

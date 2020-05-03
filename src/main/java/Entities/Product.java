@@ -4,7 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Product")
-@NamedQuery(name = "Products.findAll", query = "SELECT c FROM Product c")
+@NamedQueries({
+        @NamedQuery(name = "Products.findAll", query = "SELECT c FROM Product c"),
+        @NamedQuery(name = "Products.findByCategory", query = "SELECT c FROM Product c WHERE c.productCategory = :productCategory")
+})
 public class Product {
     @Id
     @GeneratedValue
@@ -15,11 +18,11 @@ public class Product {
     @Column(name = "PRODUCT_NAME")
     String productName;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PRODUCT_PRODUCER", referencedColumnName = "ID")
     private Producer productProducer;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PRODUCT_CATEGORY", referencedColumnName = "ID")
     private Category productCategory;
 
